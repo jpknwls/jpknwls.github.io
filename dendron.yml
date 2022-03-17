@@ -84,6 +84,7 @@ publishing:
         - root
     writeStubs: false
     siteRootDir: docs
+    siteUrl: https://jpknwls.github.io
     seo:
         title: Dendron
         description: Personal Knowledge Space
