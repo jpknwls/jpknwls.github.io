@@ -1,6 +1,7 @@
 name: Build Dendron Static Site
 
 on:
+  workflow_dispatch: # Enables on-demand/manual triggering
   push:
     branches:
     - main
@@ -36,7 +37,7 @@ jobs:
         key: ${{ runner.os }}-nextjs-${{ hashFiles('.next/yarn.lock', '.next/package-lock.json') }}-${{ hashFiles('.next/**.[jt]s', '.next/**.[jt]sx') }}
 
     - name: Initialize or pull nextjs template
-      run: "(test -d .next) && (echo 'updating dendron next...' && cd .next && git reset --hard && git clean -f && git pull && yarn && cd ..) || (echo 'init dendron next' && yarn dendron publish init)"
+      run: "(test -d .next) && (echo 'updating dendron next...' && cd .next && git reset --hard && git pull && yarn && cd ..) || (echo 'init dendron next' && yarn dendron publish init)"
 
     - name: Export notes
       run: yarn dendron publish export --target github --yes
